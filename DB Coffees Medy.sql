@@ -2,18 +2,12 @@ create database DB_CoffeesMedy
 go
 use DB_CoffeesMedy
 go
---30/06/25
-
-delete from Venta  
-
 
 
 create table Rol(
 Id_Rol int primary key identity(1,1),
 Tipo_Rol nvarchar(15) check (Tipo_Rol IN ('Admin', 'Cliente')) not null
 )
-
-update Usuario set Verificado = 1 where Nombre = 'Admin'
 
 select * from Usuario
 delete from Usuario where Id_Usuario=24
@@ -30,24 +24,12 @@ foreign key (Id_Rol) references Rol(Id_Rol)
 )
 go
 
-ALTER TABLE Usuario
-ADD TokenVerificacion NVARCHAR(100) NULL;
-  alter table Usuario add Verificado bit default 0
 
 CREATE TABLE Administrador(
   Id_admin INT Identity(1,1) NOT NULL PRIMARY KEY,
   Id_Usuario INT NOT NULL,
   FOREIGN KEY (Id_Usuario) REFERENCES Usuario(Id_Usuario)
 );
-
-insert into Administrador (Id_Usuario) values (1)
-
-/*drop table Cliente(
-Id_Cliente int primary key identity(1,1),
-NombreCompleto nvarchar(100) not null,
-Direccion nvarchar(150) not null,
-Telefono nvarchar(9) not null
-)*/
 go
 
 create table Imagen(
@@ -136,8 +118,6 @@ foreign key (Id_Venta) references Venta(Id_Venta),
 foreign key (Id_Producto) references Producto(Id_Producto)
 )
 go
-
-select * from Rol
 
 SELECT 
 V.Id_Venta,
